@@ -1,0 +1,154 @@
+.form-control {
+  width: 500px;
+}
+.container {
+  font-size: large;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(2, 122, 201);
+}
+.col-md-6 {
+  margin-left: 10%;
+}
+
+.row {
+  margin-right: -12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.custom-button {
+  width: calc(33.33% - 10px);
+  margin-right: 10px;
+}
+
+#col {
+  font-size: larger;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.role-input-container {
+  margin-top: 20px;
+}
+
+.role-input-field {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+}
+
+.save-button,
+.cancel-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  background-color: #0056b3;
+}
+
+.add-role-container {
+  text-align: center;
+  margin-top: 20px;
+  /* margin: auto; */
+  margin-right: 140px;
+}
+
+.add-role-button {
+  background-color: rgb(212, 212, 14);
+  color: white;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.role-input-container {
+  margin-top: 20px;
+}
+
+.role-input-field {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+}
+
+.submit-button {
+  background-color: #405972;
+  color: white;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.save-button,
+.cancel-button {
+  background-color: #405972;
+  color: white;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  background-color: rgb(212, 212, 14);
+}
+
+#pe {
+  text-align: center;
+  margin-right: 150px;
+  font-size: large;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(212, 212, 14);
+}
+.pes {
+  text-align: center;
+  font-size: large;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgb(212, 212, 14);
+}
+.flex-container {
+  margin-right: 130px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc(33.3333% - 5px);
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.error-message {
+  margin-top: -3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: small;
+}

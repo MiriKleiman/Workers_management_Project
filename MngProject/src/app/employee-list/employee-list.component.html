@@ -1,0 +1,58 @@
+<br />
+<div class="d-flex align-items-center">
+  <div class="input-wrapper ml-3" [formGroup]="filterForm">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="search-icon">
+          <i class="bi bi-search"></i>
+        </span>
+      </div>
+      <input
+        id="name"
+        formControlName="name"
+        placeholder="Search employees"
+        class="form-control small-input"
+        aria-label="Search"
+        aria-describedby="search-icon"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="table-wrapper">
+  <table class="table">
+    <thead>
+      <tr>
+        <th id="dowmload" title="Download Excel" (click)="downloadExcel()">
+          <i class="fas fa-download"></i>
+        </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Tz</th>
+        <th>Start Date</th>
+        <th>editing</th>
+        <th>deletion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let employee of employoeeListByFilter">
+        <tr>
+          <td></td>
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
+          <td>{{ employee.tz }}</td>
+          <td>{{ employee.beginningOfWork | date : "shortDate" }}</td>
+          <td>
+            <button class="btn-edit" (click)="edit(employee)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn-delete" (click)="deleteEpmloyee(employee)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td></tr
+      ></ng-container>
+    </tbody>
+  </table>
+</div>

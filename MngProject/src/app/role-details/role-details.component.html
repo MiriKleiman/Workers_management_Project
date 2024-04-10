@@ -1,0 +1,36 @@
+<form [formGroup]="roleForm" class="role-form">
+  <div id="col" *ngIf="boolEdit" class="role-name">{{ name }}</div>
+  <div class="form-group">
+    <label for="beginningOfWork">Date of Beginning Job</label><br />
+    <input
+      type="date"
+      id="beginningOfWork"
+      formControlName="beginningOfWork"
+      class="form-control"
+    />
+
+    <div
+      class="error-message"
+      *ngIf="formSubmitted&&roleForm.get('beginningOfWork')?.errors?.['required']"
+    >
+      Beginning of Work is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="management">Management</label><br />
+    <select id="management" formControlName="management" class="form-control">
+      <option disabled>Select</option>
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+    <div
+      class="error-message"
+      *ngIf="formSubmitted&&roleForm.get('management')?.errors?.['required']"
+    >
+      Management is required.
+    </div>
+  </div>
+
+  <button (click)="addNewItem()" class="btn btn-primary">Save Role</button>
+</form>

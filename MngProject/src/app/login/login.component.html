@@ -1,0 +1,26 @@
+<div class="ring">
+  <div class="login">
+    <h2>Login</h2>
+    <div [formGroup]="UserDetailsForm">
+      <div class="inputBx">
+        <input type="number" placeholder="tz" formControlName="tz" />
+        <br /><br />
+      </div>
+      <div class="inputBx">
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <br /><br />
+      </div>
+      <div class="inputBx">
+        <input type="submit" value="Sign in" (click)="login()" /><br />
+      </div>
+      <div class="links">
+        <a href="#">Forget Password</a>
+        <a href="#">Signup</a>
+      </div>
+    </div>
+  </div>
+</div>

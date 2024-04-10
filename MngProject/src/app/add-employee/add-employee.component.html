@@ -1,0 +1,209 @@
+<div class="pes" *ngIf="check">Editing a page</div>
+<div class="pes" *ngIf="!check">Add an employee</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form [formGroup]="addForm" class="form">
+        <div class="form-group">
+          <label for="firstName">Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="form-control custom-input"
+          />
+
+          <div
+            class="error-message"
+            *ngIf="formSubmitted&&addForm.get('firstName')?.errors?.['required']"
+          >
+            First Name is required.
+          </div>
+          <div
+            class="error-message"
+            *ngIf="formSubmitted&&addForm.get('firstName')?.errors?.['pattern']"
+          >
+            First Name must contain only letters.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Family:</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="form-control custom-input"
+          />
+
+          <div
+            class="error-message"
+            *ngIf="formSubmitted && addForm.get('lastName')?.errors?.['required']"
+          >
+            Last Name is required.
+          </div>
+          <div
+            class="error-message"
+            *ngIf="formSubmitted && addForm.get('lastName')?.errors?.['pattern']"
+          >
+            Last Name must contain only letters.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tz">ID Number:</label>
+          <input
+            type="text"
+            id="tz"
+            formControlName="tz"
+            class="form-control custom-input"
+          />
+        </div>
+        <div
+          class="error-message"
+          *ngIf="formSubmitted && addForm.get('tz')?.errors?.['required']"
+        >
+          ID Number is required.
+        </div>
+        <div
+          class="error-message"
+          *ngIf="formSubmitted && addForm.get('tz')?.errors?.['pattern']"
+        >
+          ID Number must be 9 digits long and contain only numbers.
+        </div>
+
+        <div class="form-group">
+          <label for="beginningOfWork">Beginning of Work:</label>
+          <input
+            type="date"
+            id="beginningOfWork"
+            formControlName="beginningOfWork"
+            class="form-control custom-input"
+          />
+          <div
+            class="error-message"
+            *ngIf="formSubmitted && addForm.get('beginningOfWork')?.errors?.['required']"
+          >
+            Beginning of Work is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth:</label>
+          <input
+            type="date"
+            id="dateOfBirth"
+            formControlName="dateOfBirth"
+            class="form-control custom-input"
+          />
+          <div
+            class="error-message"
+            *ngIf="formSubmitted && addForm.get('dateOfBirth')?.errors?.['required']"
+          >
+            Date of Birth is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Select Gender:</label>
+          <select formControlName="gender" class="form-control custom-input">
+            <option disabled>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="formSubmitted && addForm.get('gender')?.errors?.['required']"
+          >
+            Gender is required.
+          </div>
+        </div>
+        <br />
+
+        <div class="flex-container">
+          <ng-container *ngIf="!keepp && check" formArrayName="roles">
+            <div
+              *ngFor="let item of roles.controls; let i = index"
+              class="flex-item"
+            >
+              <app-role-details
+                [item]="rolesLength[i]"
+                [empId]="empId"
+              ></app-role-details>
+            </div>
+          </ng-container>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="pes">Add a role:</div>
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-2" *ngFor="let role of listRole; let i = index">
+      <div class="list-group-item">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            id="col"
+            type="checkbox"
+            [name]="role.name"
+            [id]="role.name"
+            [value]="role.name"
+            [checked]="check && roless.includes(role.id)"
+            (change)="goChild(role.id, role.name, $event, getChecked($event))"
+          />
+          <label
+            class="form-check-label ml-2"
+            id="col"
+            for="{{ role.name }}"
+            style="font-size: 16px"
+            >{{ role.name }}</label
+          >
+        </div>
+        <div *ngIf="check">
+          <app-role-details
+            *ngIf="
+              selectedCheckboxes.includes(role.id) && !roless.includes(role.id)
+            "
+            [idd]="role.id"
+            [employee]="emp"
+            (newItemEvent)="addNewRole($event)"
+          ></app-role-details>
+        </div>
+        <div *ngIf="!check">
+          <app-role-details
+            *ngIf="selectedCheckboxes.includes(role.id)"
+            [idd]="role.id"
+            (newItemEvent)="addNewRole($event)"
+          ></app-role-details>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-role-container">
+    <button class="add-role-button" (click)="add()">Add Role</button>
+
+    <div *ngIf="addRole" class="role-input-container">
+      <input
+        type="text"
+        id="myInput"
+        name="myInput"
+        #inputField
+        class="role-input-field"
+      />
+      <button class="submit-button" (click)="getUserInput(inputField.value)">
+        Submit
+      </button>
+    </div>
+
+    <p *ngIf="error && !addRole" class="error-message">
+      Role already exists. Please choose another role.
+    </p>
+    <br />
+    <button class="save-button" (click)="keep()">Save</button>
+    <button class="cancel-button" (click)="cancel()">Cancel</button>
+  </div>
+  <br />
+</div>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+   <br><br>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" class="poin">
+          <a class="nav-link active" id="post" aria-current="page" title="to add an employee" (click)="post()"><i class="fas fa-user-plus"></i></a>
+        </li>
+        <li class="nav-item" class="poin">
+          <a class="nav-link active" id="see" aria-current="page" title="To view the employee table" (click)="see()"><i class="fas fa-users"></i></a>
+          <!-- <li class="nav-item" class="poin"> -->
+            <!-- <a class="nav-link active" id="see" aria-current="page" title="Download Excel" (click)="downloadExcel()"> <i class="fas fa-download"></i></a> -->
+      </ul>
+      <form class="d-flex" >
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" class="poin">
+        <a class="nav-link active" class="login-button" title="login" class="log" aria-current="page" (click)="login()">  <i class="fas fa-sign-in-alt"></i> login</a>
+      </li>
+      <li class="nav-item" class="poin">
+        <a class="nav-link active" class="login-button" title="logout" id="logout" aria-current="page" (click)="logout()"> <i class="fas fa-sign-out-alt"></i> logout</a>
+      </li>
+      <!-- <li class="nav-item" class="poin" >
+        <a class="nav-link active" aria-current="page" (click)="register()">להרשמה</a>
+      </li> -->
+    </ul>
+        <!-- <button class="btn btn-outline-success" type="submit" (click)="logout()">logout</button> -->
+
+      </form>
+    </div><br><br>
+  </div>
+</nav>

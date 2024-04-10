@@ -1,0 +1,46 @@
+.role-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: small;
+}
+
+.role-name {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: rgb(212, 212, 14);
+  color: #fff;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #ffffff;
+  color: #405972;
+  border: 1px solid #405972;
+}
+#col {
+  color: rgb(212, 212, 14);
+}
+.error-message {
+  margin-top: -5px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: small;
+  color: red;
+}
