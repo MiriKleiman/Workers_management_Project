@@ -48,7 +48,9 @@
 .error-message {
   color: red;
 }
-
+.but{
+  margin-left: 125px;
+}
 .save-button,
 .cancel-button {
   background-color: #007bff;
@@ -57,7 +59,7 @@
   border-radius: 2px;
   cursor: pointer;
   margin-top: 20px;
-  margin-right: 10px;
+  margin-left: 10px;
   text-align: center;
 }
 
@@ -79,6 +81,7 @@
   border: none;
   border-radius: 1px;
   cursor: pointer;
+  margin-left: 125px;
 }
 
 .role-input-container {

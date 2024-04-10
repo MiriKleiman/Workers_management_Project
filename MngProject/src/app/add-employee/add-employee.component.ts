@@ -183,6 +183,7 @@ export class AddEmployeeComponent implements OnInit {
   keep() {
     this.formSubmitted = true;
     this.keepp = true
+    if(this.addForm.valid)
     {
       if (sessionStorage.getItem("name") === "edit") {
         var rolesArray = this.addForm.get('roles') as FormArray;

@@ -9,11 +9,11 @@ namespace Mng.Core.Repositories
 {
     public interface IEmployeeRepository
     {
-        public IEnumerable<Employee> GetEmployees();
-        public Employee GetById(int id);
-        public Employee Post(Employee employee);
-        public Employee Put(int id, Employee employee);
-        public void Delete(int id);
-        public Employee UpdateStatus(int id);
+        Task<IEnumerable<Employee>> GetEmployees();
+        Task<Employee> GetById(int id);
+        Task<Employee> Post(Employee employee);
+        Task<Employee> Put(int id, Employee employee);
+        Task Delete(int id);
+        Task<Employee> UpdateStatus(int id);
     }
 }

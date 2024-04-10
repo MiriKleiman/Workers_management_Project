@@ -20,29 +20,29 @@ namespace Mng.Service.Services
             //_mapper = mapper;
 
         }
-        public IEnumerable<Role> Get()
+        public async Task<IEnumerable<Role>> Get()
         {
-            return _repository.Get();
+            return await _repository.Get();
         }
 
        
-        public Role Post(Role employee)
+        public async Task<Role> Post(Role employee)
         {
-           return _repository.Post(employee);
+           return await _repository.Post(employee);
         }
 
-        public Role Put(int id, Role employee)
+        public async Task<Role> Put(int id, Role employee)
         {
-          return _repository.Put(id, employee);
+          return await _repository.Put(id, employee);
         }
-        public Role Delete(int id)
+        public async Task<Role> Delete(int id)
         {
-           return _repository.Delete(id);
+           return await _repository.Delete(id);
         }
 
-        public Role GetById(int id)
+        public async Task<Role> GetById(int id)
         {
-           return _repository.GetById(id);
+           return await _repository.GetById(id);
         }
     }
 }

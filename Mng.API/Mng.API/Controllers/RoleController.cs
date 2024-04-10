@@ -25,11 +25,11 @@ namespace Mng.API.Controllers
         // GET: api/<RoleController>
         [Route("role")]
         [HttpGet]
-        public ActionResult<IEnumerable<RoleDto>> Get()
+        public async Task<ActionResult<IEnumerable<RoleDto>>> Get()
         {
             try
             {
-                var roleList = _roleService.Get();
+                var roleList = await _roleService.Get();
                 var roleListDto = _mapper.Map<IEnumerable<RoleDto>>(roleList);
                 return Ok(roleListDto);
             }
@@ -41,11 +41,11 @@ namespace Mng.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Role> GetById(int id)
+        public async Task<ActionResult<Role>> GetById(int id)
         {
             try
             {
-                var role = _roleService.GetById(id);
+                var role = await _roleService.GetById(id);
                 var roleDto = _mapper.Map<RoleDto>(role);
                 return Ok(roleDto);
             }
@@ -55,12 +55,12 @@ namespace Mng.API.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Post([FromBody] RolePostModel role)
+        public async Task<ActionResult> Post([FromBody] RolePostModel role)
         {
             try
             {
                 Role role1 = _mapper.Map<Role>(role);
-                return Ok(_roleService.Post(role1));
+                return Ok(await _roleService.Post(role1));
             }
             catch (Exception ex)
             {
@@ -69,11 +69,11 @@ namespace Mng.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put([FromRoute] int id, [FromBody] RolePostModel role)
+        public async Task<ActionResult> Put([FromRoute] int id, [FromBody] RolePostModel role)
         {
             try
             {
-                return Ok(_roleService.Put(id, _mapper.Map<Role>(role)));
+                return Ok(await _roleService.Put(id, _mapper.Map<Role>(role)));
             }
             catch (Exception ex)
             {
@@ -83,11 +83,11 @@ namespace Mng.API.Controllers
 
         // DELETE api/<RoleController>/5
         [HttpDelete("{id}")]
-        public ActionResult<Role> Delete([FromRoute] int id)
+        public async Task<ActionResult<Role>> Delete([FromRoute] int id)
         {
             try
             {
-                return Ok(_roleService.Delete(id));
+                return Ok(await _roleService.Delete(id));
 
             }
             catch (Exception ex)

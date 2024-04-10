@@ -24,11 +24,11 @@ namespace Mng.API.Controllers
         }
         // GET: api/<EmployeeController>
         [HttpGet]
-        public ActionResult<List<EmployeeDto>> Get()
+        public async Task<ActionResult<List<EmployeeDto>>> Get()
         {
             try
             {
-                var employeesList = _employeeService.Get();
+                var employeesList = await _employeeService.Get();
                 var employeesListDto = _mapper.Map<List<EmployeeDto>>(employeesList);
                 return Ok(employeesListDto);
                 //return Ok(_employeeService.Get());
@@ -41,11 +41,11 @@ namespace Mng.API.Controllers
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public ActionResult<EmployeeDto> GetById(int id)
+        public async Task<ActionResult<EmployeeDto>> GetById(int id)
         {
             try
             {
-                var employee = _employeeService.GetById(id);
+                var employee = await _employeeService.GetById(id);
                 var employeeDto = _mapper.Map<EmployeeDto>(employee);
                 return Ok(employeeDto);
             }
@@ -57,11 +57,11 @@ namespace Mng.API.Controllers
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public ActionResult Post([FromBody] EmployeePostModel employee)
+        public async Task<ActionResult> Post([FromBody] EmployeePostModel employee)
         {
             try
             {
-                var employeeToAdd = _employeeService.Post(_mapper.Map<Employee>(employee));
+                var employeeToAdd = await _employeeService.Post(_mapper.Map<Employee>(employee));
                 return Ok(employeeToAdd);
             }
             catch (Exception ex)
@@ -72,25 +72,36 @@ namespace Mng.API.Controllers
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public ActionResult Put([FromRoute] int id, [FromBody] EmployeePostModel employee)
+        public async Task<ActionResult> Put(int id, [FromBody] EmployeePostModel employee)
         {
             try
             {
-                var updateEmployee =  _employeeService.Put(id, _mapper.Map<Employee>(employee));
+                var updateEmployee = await _employeeService.Put(id, _mapper.Map<Employee>(employee));
                 return Ok(updateEmployee);
             }
             catch (Exception ex)
             {
-               return BadRequest(ex.Message);
+
+                return BadRequest(ex.Message);
             }
+            //try
+            //{
+            //    var updateEmployee = await _employeeService.Put(id, _mapper.Map<Employee>(employee));
+            //    category = await _categoryService.GetByIdAsync(id);
+            //    return Ok(updateEmployee);
+            //}
+            //catch (Exception ex)
+            //{
+            //   return BadRequest(ex.Message);
+            //}
         }
         //[Route("")]
         [HttpPut("UpdateStatus/{id}")]
-        public ActionResult UpdateStatus([FromRoute] int id)
+        public async Task<ActionResult> UpdateStatus([FromRoute] int id)
         {
             try
             {
-                var updateEmployee = _employeeService.UpdateStatus(id);
+                var updateEmployee = await _employeeService.UpdateStatus(id);
                 return Ok(updateEmployee);
             }
             catch (Exception ex)
@@ -112,9 +123,9 @@ namespace Mng.API.Controllers
 
         //}
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var user = _employeeService.GetById(id);
+            var user = await _employeeService.GetById(id);
             if (user is null)
             {
                 return NotFound();

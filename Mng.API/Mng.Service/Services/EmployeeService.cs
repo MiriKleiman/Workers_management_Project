@@ -22,34 +22,34 @@ namespace Mng.Service.Services
 
         }
 
-        public Employee GetById(int id)
+        public async Task<Employee> GetById(int id)
         {
-            return _repository.GetById(id);
+            return await _repository.GetById(id);
         }
 
-        public IEnumerable<Employee> Get()
+        public async Task<IEnumerable<Employee>> Get()
         {
-            return _repository.GetEmployees();
+            return await _repository.GetEmployees();
         }
 
-        public Employee Post(Employee employee)
+        public async Task<Employee> Post(Employee employee)
         {
-             return _repository.Post(employee);
+             return await _repository.Post(employee);
         }
 
-        public Employee Put(int id, Employee employee)
+        public async Task<Employee> Put(int id, Employee employee)
         {
-           return _repository.Put(id, employee);  
+           return await _repository.Put(id, employee);  
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _repository.Delete(id);
+           await _repository.Delete(id);
         }
 
-        public Employee UpdateStatus(int id)
+        public async Task<Employee> UpdateStatus(int id)
         {
-            return _repository.UpdateStatus(id);
+            return await _repository.UpdateStatus(id);
         }
     }
 }

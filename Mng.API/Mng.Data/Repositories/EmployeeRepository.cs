@@ -19,25 +19,25 @@ namespace Mng.Data.Repositories
 
         
       
-        public IEnumerable<Employee> GetEmployees()
+        public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return _context.Employee.Include(u => u.Roles).ThenInclude(x => x.Role)
-                .Where(e => e.Status == true).ToList();
+            return await _context.Employee.Include(u => u.Roles).ThenInclude(x => x.Role)
+                .Where(e => e.Status == true).ToListAsync();
            
         }
-        public Employee Post(Employee employee)
+        public async Task<Employee> Post(Employee employee)
         {
             employee.Status = true;
             _context.Employee.Add(employee);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return employee;
         }
 
      
 
-        public Employee Put(int id, Employee employee)
+        public async Task<Employee> Put(int id, Employee employee)
         {
-            var currentEmployee = GetById(id);
+            var currentEmployee =await GetById(id);
             if (currentEmployee == null)
             {
                 return null;
@@ -46,32 +46,33 @@ namespace Mng.Data.Repositories
             employee.Status = true;
             employee.Id = id;
             _context.Entry(currentEmployee).CurrentValues.SetValues(employee);  
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return employee;
         }
      
-        public Employee UpdateStatus(int id)
+            public async Task<Employee> UpdateStatus(int id)
             {
-                var currentEmployee = GetById(id);
+                var currentEmployee = await GetById(id);
                 if (currentEmployee != null)
                 {
                     currentEmployee.Status = false;
-                    _context.SaveChanges();
+                  await  _context.SaveChangesAsync();
                 }
                 return currentEmployee;
             }
-        
 
-        public void Delete(int id)
+
+        public async Task Delete(int id)
         {
-            var employee = GetById(id);
-           _context.Employee.Remove(employee);
+            var employee = await GetById(id);
+            _context.Employee.Remove(employee);
+            await _context.SaveChangesAsync();
         }
 
-        public Employee GetById(int id)
+        public async Task<Employee> GetById(int id)
         {
-            return _context.Employee.Include(u => u.Roles).ThenInclude(x => x.Role)
-                .First(e =>e.Id == id);
+            return await _context.Employee.Include(u => u.Roles).ThenInclude(x => x.Role)
+                .FirstAsync(e =>e.Id == id);
         }
     }
 }
